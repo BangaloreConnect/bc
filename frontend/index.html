@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore Connect - Find Jobs & Talent in Bangalore</title>
+    <meta name="description" content="Bangalore Connect - Connect with top companies and talented professionals in Bangalore's job market. Find your dream job or ideal candidate.">
+    <meta name="keywords" content="Bangalore jobs, IT jobs Bangalore, job portal, hiring, recruitment, tech jobs, career opportunities">
+    <meta name="author" content="Bangalore Connect">
+    <meta property="og:title" content="Bangalore Connect - Premier Job Portal">
+    <meta property="og:description" content="Connecting talent with opportunities in Bangalore's booming job market">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521791136064-7986c2920216">
+    <meta property="og:url" content="https://bangaloreconnect.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/india.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-handshake"></i>
+                <span>Bangalore Connect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+               
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" id="adminLoginBtn">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </button>
+                    <a href="https://chat.whatsapp.com/KhTXl9CNMbSG8mv6nYCAAW" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <h1 class="hero-title">Bangalore's #1 Platform to <span class="highlight">Connect</span> Talent with Opportunities</h1>
+        </div>
+    </section>
+
+    <!-- Job Listings -->
+    <section class="section" id="jobs">
+        <div class="container">
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <h2 class="section-title">Find Your Perfect Job</h2>
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label class="filter-label">Job Type</label>
+                        <select id="jobTypeFilter" class="filter-select">
+                            <option value="">All Job Types</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Experience</label>
+                        <select id="experienceFilter" class="filter-select">
+                            <option value="">All Levels</option>
+                            <option value="Fresher">Fresher</option>
+                            <option value="1-3 years">1-3 years</option>
+                            <option value="3-5 years">3-5 years</option>
+                            <option value="5+ years">5+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Location</label>
+                        <select id="locationFilter" class="filter-select">
+                            <option value="">All Bangalore</option>
+                            <option value="Whitefield">Whitefield</option>
+                            <option value="Electronic City">Electronic City</option>
+                            <option value="Koramangala">Koramangala</option>
+                            <option value="MG Road">MG Road</option>
+                            <option value="Marathahalli">Marathahalli</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Salary</label>
+                        <select id="salaryFilter" class="filter-select">
+                            <option value="">All Salaries</option>
+                            <option value="0-5">₹0-5 LPA</option>
+                            <option value="5-10">₹5-10 LPA</option>
+                            <option value="10-20">₹10-20 LPA</option>
+                            <option value="20+">₹20+ LPA</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filters-actions">
+                    <button class="btn btn-primary" id="applyFilters">
+                        <i class="fas fa-search"></i> Search Jobs
+                    </button>
+                    <button class="btn btn-outline" id="resetFilters">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Job List - Vertical Layout -->
+            <div class="job-list-vertical" id="jobList">
+                <!-- Jobs will be loaded here -->
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-primary btn-lg" id="loadMoreBtn">
+                    <i class="fas fa-spinner fa-spin" id="loadingSpinner" style="display: none;"></i>
+                    <span id="loadMoreText">Load More Jobs</span>
+                </button>
+                
+                <div id="noJobsMessage" style="display: none; margin-top: 30px;">
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 64px; color: var(--gray-light); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--gray-color); margin-bottom: 10px;">No jobs found</h3>
+                        <p style="color: var(--gray-color);">Try adjusting your filters or check back later</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- For Employers Section -->
+<section class="section employers-section" id="employers">
+    <div class="container">
+        <h2 class="section-title">For Employers</h2>
+        <p class="section-subtitle">Hire talented youngsters in Bangalore</p>
+        
+        <div class="employers-content">
+            <div class="employer-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Post Jobs</h3>
+                <p>Promote your job openings to Bangalore's young talent</p>
+            </div>
+            
+            <div class="employer-card">
+                <i class="fas fa-search"></i>
+                <h3>Find Talent</h3>
+                <p>Connect with skilled and motivated candidates easily</p>
+            </div>
+            
+            <div class="employer-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Quick Hiring Support</h3>
+                <p>We help you connect directly with the right candidates</p>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg" id="postJobBtn">
+                <i class="fas fa-phone"></i> Contact Us to Hire Bangalore Youngsters
+            </button>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3><i class="fas fa-map-marker-alt"></i> Sreenagar,Bangalore, Karnataka</h3>
+                    <h3><i class="fas fa-map-marker-alt"></i> Cowl Bazar, Ballari, Karnataka</h3>
+                    <p><i class="fas fa-envelope"></i> bangaloreconnect@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9036717885</p>
+                    <div class="social-contact">
+                        <a href="https://chat.whatsapp.com/KhTXl9CNMbSG8mv6nYCAAW" class="social-icon whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-icon linkedin">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Get in Touch</h3>
+                    <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+    
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-paper-plane"></i> Submit
+    </button>
+</form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-shield"></i> Admin Login</h3>
+                <button class="modal-close" id="closeAdminLogin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" placeholder="Enter admin username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                        <div class="password-toggle">
+                            <i class="fas fa-eye" id="toggleAdminPassword"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="rememberAdmin">
+                            <span>Remember me (Auto-logout after 30s inactivity)</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login to Admin Panel
+                    </button>
+                    <div class="text-center mt-3">
+                        <p class="text-muted">Default: admin / admin123</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bangalore Connect</h4>
+                    <p>Connecting Bangalore's talent with amazing opportunities since 2024.</p>
+                    <div class="footer-social">
+                        <a href="https://chat.whatsapp.com/KhTXl9CNMbSG8mv6nYCAAW" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#jobs">Find Jobs</a></li>
+                        <li><a href="#employers">For Employers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Job Categories</h4>
+                    <ul>
+                        <li><a href="#">IT & Software</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Sales</a></li>
+                        <li><a href="#">Finance</a></li>
+                        <li><a href="#">HR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> contact@bangaloreconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bangalore Connect. All rights reserved.</p>
+                <p>Made with <i class="fas fa-heart" style="color: #ff4757;"></i> for Bangalore</p>
+               <p>
+  Build By <a href="https://gmitech.in" target="_blank" style="color: aliceblue;">GMI Tech</a>
+</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop normal form submission
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+
+    var phoneNumber = "919036717885"; // Add 91 for India
+
+    var whatsappMessage = 
+        "Hello, I have a new enquiry.%0A%0A" +
+        "Name: " + name + "%0A" +
+        "Email: " + email + "%0A" +
+        "Message: " + message;
+
+    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + whatsappMessage;
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
+</body>
+</html>
