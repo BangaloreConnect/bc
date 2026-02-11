@@ -8,13 +8,14 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middleware - UPDATED with your actual Render URL
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
         ? [
             'https://bangaloreconnect.com', 
             'https://www.bangaloreconnect.com',
-            'https://bangalore-connect.onrender.com'
+            'https://bangalore-connect.onrender.com',
+            'https://bc-xjam.onrender.com'  // ADDED YOUR ACTUAL RENDER URL
           ]
         : ['http://localhost:3000', 'http://127.0.0.1:5500', 'http://localhost:5000'],
     credentials: true
@@ -195,8 +196,8 @@ const initializeAdmin = async () => {
     }
 };
 
-// Serve static files from frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Serve static files from frontend - FIXED PATH
+app.use(express.static(path.join(__dirname, 'frontend'))); // REMOVED '../' - NOW LOOKS IN SAME DIRECTORY
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -213,7 +214,7 @@ app.post('/api/admin/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         
-        // Simple validation for demo - In production, use database
+        // Simple validation for demo
         if (username === 'admin' && password === 'admin123') {
             const token = jwt.sign(
                 { 
@@ -474,9 +475,9 @@ app.get('/api/admin/stats', authenticateAdmin, async (req, res) => {
     }
 });
 
-// Serve frontend for all other routes (SPA fallback)
+// Serve frontend for all other routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html')); // FIXED PATH
 });
 
 // Error handling middleware
