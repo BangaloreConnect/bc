@@ -1,0 +1,13 @@
+[
+  {
+    "id": "1770793165350",
+    "name": "Admin",
+    "email": "admin@jobportal.com",
+    "password": "$2a$10$MZPeyBlVCHVBSdFyoOxyXu0UrE0djhtclfmRZFhqOEkNhhEymMDg2",
+    "role": "admin",
+    "phone": "",
+    "skills": [],
+    "experience": "",
+    "createdAt": "2026-02-11T06:59:25.350Z"
+  }
+]
